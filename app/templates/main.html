@@ -11,14 +11,22 @@
             height: 7%;
             text-align: center;
             border-bottom: 1px solid #000; /* 1픽셀 두께의 검은색 선 */
+            display: flex;
+            justify-content: center; /* 가로 방향 가운데 정렬 */
         }
-
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
             height: 100vh; /* 뷰포트 높이의 100%로 설정 */
             position: relative; /* body를 relative로 설정하여 절대 위치로 설정된 footer를 기준으로 설정 */
+        }
+        #head-container{
+            width:100%;
+            padding-left: 1%;
+            display: flex;
+            justify-content: left; /* 가로 방향 가운데 정렬 */  
+            align-items: center; /* 세로 방향 가운데 정렬 */
         }
         #container-1{
             border-bottom: 1px solid #000; /* 아래쪽에 1픽셀 두께의 검은색 선 */
@@ -46,6 +54,10 @@
         }
         #text-emotion{
             width:50%;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            /* align-items: center; */
             border-bottom: 1px solid #000; /* 아래쪽에 1픽셀 두께의 검은색 선 */
             border-top: 1px solid #000; /* 위쪽에 1픽셀 두께의 검은색 선 */
             border-left: 1px solid #000; /* 왼쪽에 1픽셀 두께의 검은색 선 */
@@ -62,10 +74,16 @@
         #face-emotion{
             width:100%;
             height: 50%;
+            display:flex;
+            flex-direction: column;
+            justify-content: space-around;
         }
         #voice-emotion{
             width:100%;
             height: 50%;
+            display:flex;
+            flex-direction: column;
+            justify-content: space-around;
         }
         
         #container-2{
@@ -76,7 +94,20 @@
             border-left: 1px solid #000; /* 왼쪽에 1픽셀 두께의 검은색 선 */
             border-right: 1px solid #000; /* 오른쪽에 1픽셀 두께의 검은색 선 */    
         }
-
+        #text-container{
+            display: flex;
+            flex-direction: column; 
+            justify-content: space-between;
+            width: 80%;
+            height: 70%;
+            padding: 20px 30px; /* 위/아래 패딩, 좌/우 패딩 */
+        }
+        .text-box{
+            display: flex;
+        }
+        .text-content{
+            padding-left: 3%;
+        }
         /* 채팅창 css */
         #user-count-container{
             font-family: Arial, sans-serif;
@@ -149,9 +180,9 @@
 </head> 
 <body>
     <header>
-        <div>
+        <div id = "head-container">
             <img src="이미지_파일_경로" alt="로고" class="logo">
-            <span class="logo-text">Fomc Real-time Analysis Service</span>
+            <span class="logo-text" style="padding-left: 1%">Fomc Real-time Analysis Service</span>
         </div>
     </header>
     <!--1차 경계선-->
@@ -164,14 +195,17 @@
         <!--------------------영상 음성 감정 html ------------------------>
         <div id = "emotion-container">
             <div id = "text-emotion">
-                Hawkish
+                <div id = "text-emotion-value" style="padding: 30%; height: 30%; text-align: center; padding-top: 15vh">Hawkish</div>
+                <div id = "explain" style="padding: 10%; height: 20%">본 스탠스 수치는</div>
             </div>
             <div id = "video-emotion">
                 <div id = "face-emotion">
-                    Positive
+                    <div id = "face-emotion-value" style="padding: 10% 5%; text-align: center;">Positive</div>
+                    <div id = "explain" style="padding: 10%;">본 감정 수치는</div>
                 </div>
                 <div id = "voice-emotion">
-                    Negative
+                    <div id = "voice-emotion-value" style="padding: 10% 5%; text-align: center;">Negative</div>
+                    <div id = "explain" style="padding: 10%;">본 감정 수치는</div>
                 </div>
             </div>
         </div>
@@ -179,7 +213,22 @@
 
     </div>
     <div id = "container-2">
+        <div id = "text-container">
+            <div>
+                <div>실시간 해석</div>
+                <div>30초 단위로 기자회견 스크립트와 그에 대한 해석 및 해설을 제공합니다.</div>    
+            </div>
+            <div class = "text-box" id="text">
+                <div>원문</div><div class="text-content">내용</div>
+            </div>
+            <div class = "text-box" id="translatation">
+                <div>번역</div><div class="text-content">내용</div>
+            </div>
+            <div class = "text-box" id="interpretation">
+                <div>해석</div><div class="text-content">내용</div>
+            </div>    
 
+        </div>
     </div>    
     
     <!--------------------채팅창 html ------------------------>
