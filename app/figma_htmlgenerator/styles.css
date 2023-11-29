@@ -97,11 +97,11 @@
 	color:rgba(0, 0, 0, 1);
 	width:187px;
 	height:66px;
-	position:absolute;
+	position: absolute;
 	left:0px;
 	top:61px;
 	font-family:Inter;
-	text-align:center;
+	text-align: center;
 	font-size:30px;
 	letter-spacing:0;
 }
@@ -137,7 +137,7 @@
 	border-bottom-right-radius:10px;
 }
 .1_24 { 
-	border:1px solid rgba(203.03295493125916, 203.03295493125916, 203.03295493125916, 1);
+	border: 1px solid rgba(203.03295493125916, 203.03295493125916, 203.03295493125916, 1);
 }
 .e1_51 { 
 	width:340px;
