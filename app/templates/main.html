@@ -182,7 +182,7 @@
         }
         #nickname-input {
             display: block;
-            width: calc(100% - 320px);
+            width: calc(100% - 380px);
             margin-top: 5px;
             margin-right: 3px;
             padding: 5px;
@@ -311,13 +311,14 @@
     
             </div>
         </div>
+        <!--------------------채팅창 html ------------------------>
         <div id="chat-box">
             <div id="user-count-container">
                 Currently connected users: <span id="user-count">0</span>
-                <hr>
+                <hr style="border-color: #c5c0c0">
             </div>
             <div id="chat-container">
-                <ul id="messages"></ul> <!-- Messages will be displayed here -->
+                <ul id="messages" style="word-break: break-all;"></ul> <!-- Messages will be displayed here -->
                 <div id="input-container">
                     <input type="text" id="nickname-input" placeholder="User name...">
                     <input type="text" id="chat-input" placeholder="Type your message...">
@@ -325,8 +326,6 @@
                 <button id="send-button">Send</button>   
             </div>
         </div>
-        <!--------------------채팅창 html ------------------------>
-
     </div>    
     
     <!-------------------- footer ------------------------>
@@ -404,7 +403,8 @@
             $('#send-button').on('click', function () {
                 var nickname = $('#nickname-input').val();
                 var message = $('#chat-input').val();
-                if (nickname.trim() !== '' && message.trim() !== '') { // 값이 비어있지 않은 경우에만 전송
+                if (nickname.trim().length <= 10 && message.trim().length <= 250 && message.trim() !== '') {
+                    // 닉네임이 10글자 이하이고 메시지가 250글자 이하이며 값이 비어있지 않은 경우에만 전송
                     socket.send({ nickname: nickname, message: message });
                     $('#chat-input').val('');
                 }
@@ -415,7 +415,8 @@
                 if (e.which === 13) {
                     var nickname = $('#nickname-input').val();
                     var message = $('#chat-input').val();
-                    if (nickname.trim() !== '' && message.trim() !== '') { // 값이 비어있지 않은 경우에만 전송
+                    if (nickname.trim().length <= 10 && message.trim().length <= 250 && message.trim() !== '') {
+                        // 닉네임이 10글자 이하이고 메시지가 250글자 이하이며 값이 비어있지 않은 경우에만 전송
                         socket.send({ nickname: nickname, message: message });
                         $('#chat-input').val('');
                     }
