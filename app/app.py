@@ -29,7 +29,8 @@ def limit_remote_addr():
 @app.route("/")
 #------------------- 채팅방 기능 -----------------------#
 def chatting():
-    return render_template("main.html")
+    logo_path = 'images/logo.png'  # 이미지 파일의 상대 경로
+    return render_template("main.html",logo_path=logo_path)
 
 @socket_io.on("message")
 def socket_request(data):
@@ -76,7 +77,9 @@ def process_text():
         data = request.json
         # stored_text에 'speech'
         stored_text['speech'] = data.get('speech')
-        stored_text['interpret'] = data.get('interpret')
+        stored_text['translation'] = data.get('translation')
+        stored_text['interpretation'] = data.get('interpretation')
+        stored_text['stance_score'] = data.get('stance_score')
         return jsonify({"message": "text received successfully"})
 
     if request.method == 'GET':
