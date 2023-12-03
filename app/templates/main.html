@@ -48,7 +48,7 @@
         }
         /* container1부분 */
         #container-1{
-            height: 53%;
+            height: 43%;
             display: flex; /* Flexbox를 사용하여 요소들을 가로로 정렬합니다 */
             /* border: 1px solid #D9D9D9; */
         }
@@ -126,7 +126,7 @@
         }
         /* container2 부분 */
         #container-2{
-            height:30%; 
+            height:40%; 
             
             padding-left: 1%;
             padding-right: 1%;
@@ -135,18 +135,27 @@
             justify-content: left;
         }
         #text-container{
-            height: 100%;
-            width: 69%;
+            height: 85%;
+            width: 100%;
             border: 1px solid #D9D9D9;
             border-radius: 10px;
             background-color: #FFF;
             /* padding: 1%; */
+            word-break: break-all;
+            overflow-y: scroll;
+        }
+        .interpret-container{
+            margin: 1%;
+            border: 1px solid #D9D9D9;
+            border-radius: 20px;
+            background-color: #dce5ff;
+
         }
         .text-box{
             display: flex;
             overflow-x: scroll;
             padding: 2%;
-            
+            font-size: 14px;
         }
         /* 채팅창 css */
         #user-count-container{
@@ -240,7 +249,7 @@
     <div id = "container-1">
         <!--------------------스트리밍 html ------------------------>
         <div id="video-container">
-            <iframe width="720" height="405" src="https://www.youtube.com/embed/ohuJH9fld3w?si=BoTP93CkaAKXz3jq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe width="624" height="351" src="https://www.youtube.com/embed/ohuJH9fld3w?si=BoTP93CkaAKXz3jq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         
         <!--------------------영상 음성 감정 html ------------------------>
@@ -277,7 +286,7 @@
                         <div class = "current">Currently Voice Emotion</div>
                         <div id = "voice-emotion-value">voice emotion</div>
                         <br>
-                        <div class = "explain">지난 10초 동안의 연준의장의 <br> 목소리 감정을 분석합니다. <br><br> Positive는 긍정적인 감정, <br> Negative는 부정적인 어조, <br> Neutral은 중립적인 어조입니다. </div>
+                        <div class = "explain">지난 10초 동안의 연준의장의 <br> 목소리 감정을 분석합니다. <br><br> Positive는 긍정적인 어조 <br> Negative는 부정적인 어조, <br> Neutral은 중립적인 어조입니다. </div>
                     </div>
                 </div>
             </div>
@@ -287,28 +296,38 @@
 
     </div>
     <div id = "container-2">
-        <div id = "text-container">
-            <div style="
-                        background-color: #f3f3f3;
-                        border:#c5c0c0;
-                        border-radius: 10px;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;">
-                <div style="padding-left: 3%; padding-top: 1%; font-weight: bold; font-size: 20px;">실시간 해석</div>
-                <div style="padding-left: 3%; padding-top: 3px; padding-bottom: 1%; color:#806D6D">30초 단위로 기자회견 스크립트와 그에 대한 해석 및 해설을 제공합니다.</div>    
-            </div>
-            <div>
-                <div class = "text-box" id="text">
-                    <div style="font-weight: bold; color:#806D6D">원문</div><div id= "text-value" style="padding-left: 3%;">내용</div>
+        <div style="width: 69%">
+            <div id = "text-container-head"
+                            style="
+                            background-color: #f3f3f3;
+                            border:#878787;
+                            border-radius: 10px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;">
+                    <div style="padding-left: 3%; padding-top: 1%; font-weight: bold; font-size: 15px;">실시간 해석</div>
+                    <div style="padding-left: 3%; padding-top: 3px; padding-bottom: 1%; color:#806D6D; font-size: 10px;">30초 단위로 기자회견 스크립트와 그에 대한 해석 및 해설을 제공합니다.</div>    
                 </div>
-                <div class = "text-box" id="translatation">
-                    <div style="font-weight: bold; color:#806D6D">번역</div><div id= "translation-value" style="padding-left: 3%;">내용</div>
+            <div id = "text-container">
+                <div class = "interpret-container">
+                    <div style="display: flex; padding-top: 1%; font-size: 10px">
+                        <div id = "stance-score" style="padding-left: 2%">Stance Score</div>
+                        <div id = "time-line" style="padding-left:85%;">30초 전</div>
+                    </div>
+                    <div class = "text-box" id="text">
+                        <div style="font-weight: bold; color:#806D6D; min-width: 35px">원문</div><div id= "text-value" style="padding-left: 1%;">내용</div>
+                    </div>
+                    <div class = "text-box" id="translatation">
+                        <div style="font-weight: bold; color:#806D6D; min-width: 35px;">번역</div><div id= "translation-value" style="padding-left: 1%;">내용</div>
+                    </div>
+                    <div class = "text-box" id="interpretation">
+                        <div style="font-weight: bold; color:#806D6D; min-width: 35px;">해석</div><div id= "interpretation-value" style="padding-left: 1%;">내용</div>
+                    </div>   
                 </div>
-                <div class = "text-box" id="interpretation">
-                    <div style="font-weight: bold; color:#806D6D">해석</div><div id= "interpretation-value" style="padding-left: 3%;">내용</div>
-                </div>    
-    
+
+                <hr>
+                <div style="padding-left: 3%">이전 기록</div>
+                <div id="log-container"></div> 
             </div>
         </div>
         <!--------------------채팅창 html ------------------------>
@@ -337,9 +356,22 @@
     
     <script type="text/javascript">
         /*------------ 음성, 영상 감정 데이터 --------------*/
-
         let EmotionData; // 데이터를 저장할 변수
         let TextData; // 데이터를 저장할 변수
+        
+        // 현재 시간을 가져오는 함수
+        function getCurrentDateTime() {
+            const now = new Date();
+            now.setSeconds(now.getSeconds() - 30); // 현재 시간에서 30초를 뺌
+            const year = now.getFullYear(); // 년
+            const month = (now.getMonth() + 1).toString().padStart(2, '0'); // 월
+            const day = now.getDate().toString().padStart(2, '0'); // 일
+            const hours = now.getHours().toString().padStart(2, '0'); // 시간
+            const minutes = now.getMinutes().toString().padStart(2, '0'); // 분
+            const seconds = now.getSeconds().toString().padStart(2, '0'); // 초
+
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }
 
         // emotion 데이터 요청
         setInterval(function() {
@@ -375,9 +407,36 @@
                 document.getElementById('translation-value').innerText = TextData.translation;
                 document.getElementById('interpretation-value').innerText = TextData.interpretation;
                 document.getElementById('text-emotion-value').innerText = TextData.stance_score;
+
+                const currentTime = getCurrentDateTime(); // 현재 시간 가져오기
+                const newLog = document.createElement('div');
+                newLog.classList.add('interpret-container'); // 원하는 클래스 추가
+                // 새로운 데이터 추가
+                newLog.innerHTML = `
+                    <div style="display: flex; padding-top: 1%; font-size: 10px">
+                        <div id = "stance-score" style="padding-left: 2%">${TextData.stance_score}</div>
+                        <div id = "time-line" style="padding-left:80%;">${currentTime}</div>
+                    </div>
+                    <div class="text-box">
+                        <div style="font-weight: bold; color:#806D6D; min-width: 35px;">원문</div>
+                        <div style="padding-left: 1%;">${TextData.speech}</div>
+                    </div>
+                    <div class="text-box">
+                        <div style="font-weight: bold; color:#806D6D; min-width: 35px;">번역</div>
+                        <div style="padding-left: 1%;">${TextData.translation}</div>
+                    </div>
+                    <div class="text-box">
+                        <div style="font-weight: bold; color:#806D6D; min-width: 35px;">해석</div>
+                        <div style="padding-left: 1%;">${TextData.interpretation}</div>
+                    </div>
+                `
+                
+                // log-container에 새로운 데이터 추가
+                const logContainer = document.getElementById('log-container');
+                logContainer.prepend(newLog); // 새로운 데이터를 맨 위에 추가
             })
             .catch(error => console.error('Error:', error));
-        }, 15000); // 15초마다 요청을 보냄
+        }, 3000); // 15초마다 요청을 보냄
 
 
         /*------------ 사용자 수 확인 --------------*/

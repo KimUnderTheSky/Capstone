@@ -5,7 +5,7 @@ app = Flask(__name__)
 app.secret_key = 'pswd'
 
 # flask 소켓 통신
-socket_io = SocketIO(app) # socket io 설정
+socket_io = SocketIO(app, cors_allowed_origins="*") # socket io 설정
 connected_users = 0  # 접속 중인 사용자 수를 저장할 변수
 
 # emotion, text 값 저장
@@ -70,7 +70,7 @@ def process_emotion():
         # Return stored emotions to the client on GET request
         return jsonify(stored_emotions)
     
-#------------------- 텍스트 로컬에서 받고 클라이언트에게 보내는 기능 -----------------------#
+# ------------------- 텍스트 로컬에서 받고 클라이언트에게 보내는 기능 -----------------------#
 @app.route('/text', methods=['POST', 'GET'])
 def process_text():
     if request.method == 'POST':
