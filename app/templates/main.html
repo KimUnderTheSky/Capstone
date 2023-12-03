@@ -440,15 +440,15 @@
 
 
         /*------------ 사용자 수 확인 --------------*/
-        const socket = io();
+        var socket = io('https://capstone-rihxj.run.goorm.site');
         socket.on('user_count', function(count) {
             document.getElementById('user-count').textContent = count;
         });
 
         $(document).ready(function(){
-            console.log('http://'+document.domain + ':' + location.port)
-            var socket = io.connect('http://'+document.domain + ':' + location.port); 
-            
+            console.log('https://'+document.domain)
+            var socket = io.connect('https://'+document.domain);
+
             // 서버로부터 채팅 메시지를 받았을 때 처리
              socket.on('message', function (msg) {
                 // console.log(msg);
@@ -462,7 +462,7 @@
             $('#send-button').on('click', function () {
                 var nickname = $('#nickname-input').val();
                 var message = $('#chat-input').val();
-                if (nickname.trim().length <= 10 && message.trim().length <= 250 && message.trim() !== '') {
+                if (nickname.trim().length <= 10 && message.trim().length <= 250 && message.trim() !== '' && nickname.trim() !== '') {
                     // 닉네임이 10글자 이하이고 메시지가 250글자 이하이며 값이 비어있지 않은 경우에만 전송
                     socket.send({ nickname: nickname, message: message });
                     $('#chat-input').val('');
@@ -474,7 +474,7 @@
                 if (e.which === 13) {
                     var nickname = $('#nickname-input').val();
                     var message = $('#chat-input').val();
-                    if (nickname.trim().length <= 10 && message.trim().length <= 250 && message.trim() !== '') {
+                    if (nickname.trim().length <= 10 && message.trim().length <= 250 && message.trim() !== '' && nickname.trim() !== '') {
                         // 닉네임이 10글자 이하이고 메시지가 250글자 이하이며 값이 비어있지 않은 경우에만 전송
                         socket.send({ nickname: nickname, message: message });
                         $('#chat-input').val('');
