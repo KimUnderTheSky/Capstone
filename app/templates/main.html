@@ -312,7 +312,7 @@
                 <div class = "interpret-container">
                     <div style="display: flex; padding-top: 1%; font-size: 10px">
                         <div id = "stance-score" style="padding-left: 2%">Stance Score</div>
-                        <div id = "time-line" style="padding-left:85%;">30초 전</div>
+                        <div id = "time-line" style="padding-left:87%;">최근</div>
                     </div>
                     <div class = "text-box" id="text">
                         <div style="font-weight: bold; color:#806D6D; min-width: 35px">원문</div><div id= "text-value" style="padding-left: 1%;">내용</div>
@@ -326,7 +326,7 @@
                 </div>
 
                 <hr>
-                <div style="padding-left: 3%">이전 기록</div>
+                <div style="padding-left: 3%">이전 기록 - ( 위에서 부터 최신 기록, 최대 5개 까지 )</div>
                 <div id="log-container"></div> 
             </div>
         </div>
@@ -358,7 +358,8 @@
         /*------------ 음성, 영상 감정 데이터 --------------*/
         let EmotionData; // 데이터를 저장할 변수
         let TextData; // 데이터를 저장할 변수
-        
+        const maxLogs = 5; // 최대 보존하려는 로그 개수
+
         // 현재 시간을 가져오는 함수
         function getCurrentDateTime() {
             const now = new Date();
@@ -433,6 +434,10 @@
                 
                 // log-container에 새로운 데이터 추가
                 const logContainer = document.getElementById('log-container');
+
+                if (logContainer.children.length >= maxLogs) {     
+                    logContainer.removeChild(logContainer.lastChild); // 가장 오래된 로그 삭제
+                }
                 logContainer.prepend(newLog); // 새로운 데이터를 맨 위에 추가
             })
             .catch(error => console.error('Error:', error));
@@ -440,14 +445,16 @@
 
 
         /*------------ 사용자 수 확인 --------------*/
-        var socket = io('https://capstone-rihxj.run.goorm.site');
+        var socket = io(); // 로컬
+        // var socket = io('https://capstone-rihxj.run.goorm.site'); // 구름 서버용
         socket.on('user_count', function(count) {
             document.getElementById('user-count').textContent = count;
         });
 
         $(document).ready(function(){
-            console.log('https://'+document.domain)
-            var socket = io.connect('https://'+document.domain);
+            console.log('http://'+document.domain)
+            var socket = io.connect('http://'+document.domain + ':' + location.port); // 로컬
+            // var socket = io.connect('https://'+document.domain); // 구름 서버용
 
             // 서버로부터 채팅 메시지를 받았을 때 처리
              socket.on('message', function (msg) {
